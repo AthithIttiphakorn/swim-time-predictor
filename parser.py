@@ -27,3 +27,6 @@ with open('times.csv', 'a') as f:
 
 with open('dates.csv', 'a') as f:
     f.write(f"{athleteID}," + ','.join(datesList) + '\n')
+
+
+#Need to filter out Short Course pool: Short Course (25m)  --Format in th element.
