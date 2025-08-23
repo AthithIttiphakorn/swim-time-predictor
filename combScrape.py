@@ -11,9 +11,17 @@ def conv_timeToSeconds(time_str: str) -> str:
         return str(int(mins) * 60 + float(seconds))
     except:
         return str(time_str)
+    
 
-for i in range(30):
-    conn = http.client.HTTPSConnection("www.swimrankings.net")
+targetSwimmer = 10
+currentSwimmerCount = 0
+
+conn = http.client.HTTPSConnection("www.swimrankings.net")
+
+while currentSwimmerCount < targetSwimmer:
+
+    print(f'currentSwimmerCount = {currentSwimmerCount}, athleteID={athleteID}')
+    
     conn.request("GET", f"/index.php?page=athleteDetail&athleteId={athleteID}&styleId=13")
     response = conn.getresponse()
     
@@ -21,6 +29,7 @@ for i in range(30):
     print(f"Reason: {response.reason}")
 
     body1 = response.read().decode()
+   # print(f'body1={body1}')
     soup = BeautifulSoup(body1, 'html.parser')
     #print(type(body1))
 
@@ -55,6 +64,9 @@ for i in range(30):
 
     except:
         time.sleep(1)
-
-    athleteID += 1
-    time.sleep(2.3)
+    else:
+        currentSwimmerCount += 1
+    finally:
+        athleteID += 1
+    
+    time.sleep(3)
