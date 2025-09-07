@@ -69,4 +69,4 @@ while currentSwimmerCount < targetSwimmer:
     finally:
         athleteID += 1
     
-    time.sleep(3)
+    time.sleep(5)
